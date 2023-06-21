@@ -3,10 +3,6 @@ import argparse
 import os
 import chardet
 
-import argparse
-import os
-import chardet
-
 def search_word_in_files(directory, word):
     for root, _, files in os.walk(directory):
         for file in files:
@@ -38,9 +34,8 @@ def search_word_in_files(directory, word):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Buscador de coincidencias en archivos')
     parser.add_argument('directory', help='Ruta del directorio a buscar')
-    parser.add_argument('word', help='Palabra a buscar')
+    parser.add_argument('words', nargs='+', help='Lista de palabras a buscar')
     args = parser.parse_args()
 
-    search_word_in_files(args.directory, args.word)
-
-
+    for word in args.words:
+        search_word_in_files(args.directory, word)
