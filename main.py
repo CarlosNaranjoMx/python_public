@@ -4,7 +4,7 @@ import os
 import chardet
 
 def search_word_in_files(directory, word):
-    print(word)
+    printed_paths = set()  # Conjunto para almacenar los relative_paths ya impresos
     for root, _, files in os.walk(directory):
         for file in files:
             file_path = os.path.join(root, file)
@@ -28,7 +28,9 @@ def search_word_in_files(directory, word):
 
                     if content is not None and word.lower() in content.lower():
                         relative_path = os.path.relpath(file_path, directory)
-                        print(f'{relative_path}')
+                        if relative_path not in printed_paths:  # Verificar si el relative_path ya ha sido impreso
+                            printed_paths.add(relative_path)  # Agregar el relative_path al conjunto de paths impresos
+                            print(f'{relative_path}')
             except IOError:
                 print(f'Error al abrir el archivo: {file_path}')
 
