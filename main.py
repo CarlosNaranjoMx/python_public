@@ -4,6 +4,7 @@ import os
 import chardet
 
 def search_word_in_files(directory, word):
+    print(word)
     for root, _, files in os.walk(directory):
         for file in files:
             file_path = os.path.join(root, file)
