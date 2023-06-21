@@ -4,6 +4,7 @@ import os
 import chardet
 
 def search_word_in_files(directory, word):
+    print(word)
     printed_paths = set()  # Conjunto para almacenar los relative_paths ya impresos
     for root, _, files in os.walk(directory):
         for file in files:
